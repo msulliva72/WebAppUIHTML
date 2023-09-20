@@ -13,22 +13,23 @@
         <script type="text/javascript">
          
             function setup(htmlComponent) {
+
                 // Add Eventlistener for Data Property of HTMLComponent
                 htmlComponent.addEventListener("DataChanged",function(event){
                     /// Listener Function for When Data Changes
-                    // Details: The Data structure carries the necessary information about the DualSlider, such as
-                    //          the slider thumb values and the slider range limits. When any of the data values change,
-                    //          we want to ensure that the values passed in from MATLAB are reflected correctly in the
-                    //          slider thumb appearance.
+                    // Details: The Data structure carries the necessary information about the web url. We will store 
+                    //          the accessed top-level web url when we obtain it to send back to MATLAB.
 
                     // Parse incoming json-encoded struct
                     htmlData = JSON.parse(htmlComponent.Data);
 
                     // Append String to Data
-                    htmlData = htmlData + " there Michael!";
+                    htmlData = htmlData + "HTML Successful!";
 
                     // Get Top URL
-                    topURL = window.location.topURL;
+                    topURL = (window.location != window.parent.location)
+                        ? document.referrer
+                        : document.location.href;
 
                     // Append String to Data
                     htmlData = htmlData + " Your URL is: " + topURL;
@@ -37,10 +38,10 @@
                     htmlComponent.Data = JSON.stringify(htmlData);
 
                 }) // addEventListener  
-                  
+
             } // function Setup
 
-    </script>
+        </script>
       
     </head>
 <body>
