@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        
+        <!--Link CSS Stylesheets-->
+        <!-- <link rel="stylesheet" href="css/dual-slider.css"> -->
+    
+        <!--Inlinet JS Module-->
+        <script type="text/javascript">
+         
+            function setup(htmlComponent) {
+                // Add Eventlistener for Data Property of HTMLComponent
+                htmlComponent.addEventListener("DataChanged",function(event){
+                    /// Listener Function for When Data Changes
+                    // Details: The Data structure carries the necessary information about the DualSlider, such as
+                    //          the slider thumb values and the slider range limits. When any of the data values change,
+                    //          we want to ensure that the values passed in from MATLAB are reflected correctly in the
+                    //          slider thumb appearance.
+
+                    // Parse incoming json-encoded struct
+                    htmlData = JSON.parse(htmlComponent.Data);
+
+                    // Append String to Data
+                    htmlData = htmlData + " there Michael!";
+
+                    // Get Top URL
+                    topURL = window.location.topURL;
+
+                    // Append String to Data
+                    htmlData = htmlData + " Your URL is: " + topURL;
+
+                    // Return
+                    htmlComponent.Data = JSON.stringify(htmlData);
+
+                }) // addEventListener  
+                  
+            } // function Setup
+
+    </script>
+      
+    </head>
+<body>
+    
+</body>
+</html>
